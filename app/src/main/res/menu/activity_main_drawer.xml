@@ -3,21 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-
-<!--    <group android:checkableBehavior="single">-->
-<!--        <item-->
-<!--            android:id="@+id/nav_home"-->
-<!--            android:icon="@drawable/ic_menu_camera"-->
-<!--            android:title="@string/menu_home" />-->
-<!--        <item-->
-<!--            android:id="@+id/nav_reader"-->
-<!--            android:icon="@drawable/ic_baseline_filter_center_focus_24"-->
-<!--            android:title="Reader" />-->
-<!--        <item-->
-<!--            android:id="@+id/nav_barcode"-->
-<!--            android:icon="@drawable/ic_baseline_view_week_24"-->
-<!--            android:title="Bar code" />-->
-<!--    </group>-->
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"

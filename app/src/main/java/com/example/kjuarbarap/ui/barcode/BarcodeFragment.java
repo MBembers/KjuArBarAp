@@ -78,11 +78,17 @@ public class BarcodeFragment extends Fragment {
 
     private void saveBitmap() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String path = preferences.getString("savePath", null);
+        String path = preferences.getString("path", null);
+        Log.d("XXX", "SAVE PATH: " + path);
         if(path == null){
             path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();
         }
-        File file = new File(path, Calendar.getInstance().getTime().toString().replaceAll(":", ".")+ ".png");
+        else {
+            path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()+ "/"+ path;
+        }
+        File directory = new File(path);
+        if(!directory.exists()) directory.mkdirs();
+        File file = new File(path, Calendar.getInstance().getTimeInMillis() + ".png");
         try (FileOutputStream out = new FileOutputStream(file)) {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
             // PNG is a lossless format, the compression factor (100) is ignored
@@ -97,6 +103,7 @@ public class BarcodeFragment extends Fragment {
             }
         }
     }
+
 
     private void buttonGenerate_onClick(View view) {
         try {

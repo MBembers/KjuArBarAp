@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ThemeManager.setTheme(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -79,26 +79,27 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
 
 
-        int theme = preferences.getInt("theme", 0);
+        int theme = preferences.getInt("theme",0);
         Log.d("XXX", "THEME: " + theme);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Choose theme")
-                .setPositiveButton("1", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        editor.putInt("theme", 0); // value to store
-                        editor.commit();
-                    }
-                })
-                .setNegativeButton("2", new DialogInterface.OnClickListener() {
+                .setPositiveButton("2", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         editor.putInt("theme", 1); // value to store
                         editor.commit();
+                        recreate();
+                    }
+                })
+                .setNegativeButton("1", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        editor.putInt("theme", 0); // value to store
+                        editor.commit();
+                        recreate();
                     }
                 });
         // Create the AlertDialog object and return it
         builder.show();
-
     }
 
     private void path() {
